@@ -7,7 +7,6 @@ int yywrap(void)
     return 1;
 }
 %}
-DIGIT [0-9]
 
 %%
 "+"   return '+';
@@ -16,14 +15,14 @@ DIGIT [0-9]
 "/"   return '/';
 "\n"  return '\n';
 
-[1-9]DIGIT* {
+[1-9][0-9]* {
     long temp;
     sscanf(yytext, "%li", &temp);
     yylval.real = temp;
     return tDOUBLE_LITERAL;
 }
 
-DIGIT*\.DIGIT* {
+[0-9]*\.[0-9]* {
     double temp;
     sscanf(yytext, "%lf", &temp);
     yylval.real = temp;
