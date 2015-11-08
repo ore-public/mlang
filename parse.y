@@ -59,7 +59,7 @@ primary     : tDOUBLE_LITERAL
 int yyerror (char const *str)
 {
     extern char *yytext;
-    fprintf(stderr, "parser error near %s\n", yytext);
+    fprintf(stderr, "parser error near %s. (%s)\n", yytext, str);
     return 0;
 }
 
@@ -69,7 +69,7 @@ int main(void)
     extern int yyparse(void);
     extern FILE *yyin;
 
-    yydebug = 1;
+    /*yydebug = 1;*/
     yyin = stdin;
     if(yyparse()) {
         fprintf(stderr, "Error ! Error ! Error !\n");
