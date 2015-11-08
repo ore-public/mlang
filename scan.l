@@ -1,0 +1,32 @@
+%{
+#include <stdio.h>
+#include "parse.tab.h"
+
+int yywrap(void)
+{
+    return 1;
+}
+%}
+DIGIT [0-9]
+
+%%
+"+"   return '+';
+"-"   return '-';
+"*"   return '*';
+"/"   return '/';
+"\n"  return '\n';
+
+[1-9]DIGIT* {
+    long temp;
+    sscanf(yytext, "%li", &temp);
+    yylval.real = temp;
+    return tDOUBLE_LITERAL;
+}
+
+DIGIT*\.DIGIT* {
+    double temp;
+    sscanf(yytext, "%lf", &temp);
+    yylval.real = temp;
+    return tDOUBLE_LITERAL;
+}
+%%
