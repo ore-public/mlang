@@ -1,7 +1,10 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "mlang.h"
 
+int yylex(void);
+int yyerror(char const *str);
 %}
 
 %union {
