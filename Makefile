@@ -1,11 +1,11 @@
-all: mlang
+all: bin/mlang
 parse.tab.c: parse.y
 	bison -dv parse.y
 
 lex.yy.c: scan.l
 	lex scan.l
 
-mlang: parse.tab.c lex.yy.c
+bin/mlang: parse.tab.c lex.yy.c
 	cc -o bin/mlang -DYYERROR_VERBOSE -DYYDEBUG parse.tab.c lex.yy.c
 
 clean:
